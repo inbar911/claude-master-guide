@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f7f4ec;
+  --paper: #fffdf8;
+  --ink: #211f1a;
+  --muted: #6f6a5d;
+  --line: #e7e0d2;
+  --clay: #c96442;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(201, 100, 66, 0.2);
+  }
+
+  /* Warm, slim scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d9d0bd transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #d9d0bd;
+    border-radius: 999px;
+    border: 2px solid var(--bg);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Long-form content rhythm for guide sections */
+  .prose-he {
+    @apply text-[1.0625rem] leading-[1.9] text-ink/90;
+  }
+  .prose-he p {
+    @apply my-4;
+  }
+  .prose-he strong {
+    @apply font-bold text-ink;
+  }
+  .prose-he ul {
+    @apply my-4 space-y-2 ps-1;
+  }
+  .prose-he ul > li {
+    @apply relative ps-6;
+  }
+  .prose-he ul > li::before {
+    content: "";
+    @apply absolute top-[0.85rem] h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-clay/70;
+    inset-inline-start: 0.25rem;
+  }
+  .prose-he a {
+    @apply font-medium text-clay underline decoration-clay/30 underline-offset-2 transition hover:decoration-clay;
+  }
+  .prose-he code {
+    @apply rounded-md bg-ink/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-ink;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  .kbd {
+    @apply inline-flex items-center rounded-md border border-line bg-paper px-1.5 py-0.5 font-mono text-[0.78em] text-ink shadow-[0_1px_0_rgba(33,31,26,0.08)];
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-line bg-paper shadow-soft;
+  }
+}
+
+/* Anchor offset helper for TOC jumps */
+.anchor-target {
+  scroll-margin-top: 6rem;
+}
